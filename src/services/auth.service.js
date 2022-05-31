@@ -4,11 +4,12 @@ import TokenService from "./token.service";
 class AuthService {
     login(user) {
 
-        return api.post('login', {
+        return api.post('users/login', {
             "email": user.email,
             "password": user.password
         })
         .then(response => {
+            console.log(response);
             if(response.data.access_token) {
                 localStorage.setItem('userObject', JSON.stringify(response.data))
             }

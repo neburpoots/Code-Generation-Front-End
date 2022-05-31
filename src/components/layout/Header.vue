@@ -11,10 +11,10 @@
         <li class="nav-item">
           <router-link v-if="currentUser" to="/myorders" class="nav-link">My orders</router-link>
         </li>
-        <li v-if="currentUser && adminAccess" class="nav-item">
+        <li v-if="currentUser && employeeAccess" class="nav-item">
           <router-link to="/productmanagement" class="nav-link">Product management</router-link>
         </li>
-        <li v-if="currentUser && adminAccess" class="nav-item">
+        <li v-if="currentUser && employeeAccess" class="nav-item">
           <router-link to="/ordermanagement" class="nav-link">Order management</router-link>
         </li>
       </div>
@@ -39,7 +39,7 @@
         <li class="nav-item">
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
-            {{ currentUser.user.email }}
+            {{ currentUser.email }}
           </router-link>
         </li>
         <li class="nav-item">
@@ -58,8 +58,8 @@ export default {
     currentUser() {
       return this.$store.state.auth.userObject;
     },
-    adminAccess() {
-      return this.$store.state.auth.userObject.user.is_admin;
+    employeeAccess() {
+      return this.$store.state.auth.userObject.role.filter(role => role.name === "ROLE_EMPLOYEE").length > 0;
     }
   },
   methods: {

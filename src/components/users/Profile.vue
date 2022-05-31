@@ -2,20 +2,30 @@
   <div class="container pt-5">
     <header class="jumbotron">
       <h3 class="text-dark">
-        Profile: <strong>{{currentUser.user.name}}</strong>
+        Profile: <strong>{{currentUser.firstname + " " + currentUser.lastname}}</strong>
       </h3>
     </header>
     <p>
       <strong>Id:</strong>
-      {{currentUser.user.id}}
+      {{currentUser.user_id}}
     </p>
     <p>
       <strong>Email:</strong>
-      {{currentUser.user.email}}
+      {{currentUser.email}}
     </p>
     <p>
-      <strong>Role: </strong>
-      {{currentUser.user.is_admin ? "Admin" : "Normal user"}}
+      <strong>Transaction limit:</strong>
+      € {{currentUser.transaction_limit.toFixed(2)}}
+    </p>
+    <p>
+      <strong>Daily limit:</strong>
+      € {{currentUser.daily_limit.toFixed(2)}}
+    </p>
+    <p>
+      <strong>Roles: </strong>
+      <ul>
+        <li v-for="role in currentUser.role" :key="role">{{role.role_id + ": " + role.name}}</li>
+      </ul>    
     </p>
   </div>
 </template>
