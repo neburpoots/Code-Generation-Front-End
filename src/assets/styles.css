@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(231 231 231) !important;    
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.products .card { 
+    box-shadow: 0 29px 32px -20px rgb(0 0 0 / 35%);
+}
+
+.products {
+    gap: 20px;
+}
+
+.titleandclose figure:hover {
+    cursor: pointer;
+}
+
+.thanksforordering {
+    height: 80vh;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.productoverviewImage img {
+    max-width: 200px;
+}
+
+.previewimage {
+    max-width: 200px;
+}
