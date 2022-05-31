@@ -1,21 +1,16 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <a href="/" class="navbar-brand">Videocard webshop v2</a>
+      <a href="/" class="navbar-brand">Swaggerbank</a>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">
-            Videocards
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link v-if="currentUser" to="/myorders" class="nav-link">My orders</router-link>
+          <router-link v-if="currentUser" to="/mybankaccounts" class="nav-link">My Bank accounts</router-link>
         </li>
         <li v-if="currentUser && employeeAccess" class="nav-item">
-          <router-link to="/productmanagement" class="nav-link">Product management</router-link>
+          <router-link to="/productmanagement" class="nav-link">Bank account management</router-link>
         </li>
         <li v-if="currentUser && employeeAccess" class="nav-item">
-          <router-link to="/ordermanagement" class="nav-link">Order management</router-link>
+          <router-link to="/ordermanagement" class="nav-link">User management</router-link>
         </li>
       </div>
       <div class="navbar-nav ml-auto">

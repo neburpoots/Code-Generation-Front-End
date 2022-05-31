@@ -7,6 +7,13 @@ const initialState = userObject
 export const auth = {
   namespaced: true,
   state: initialState,
+
+  getters: {
+    getUser(state) {
+      return state.userObject;
+    },
+  },
+
   actions: {
 
     login({commit}, user) {

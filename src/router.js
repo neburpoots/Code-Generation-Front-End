@@ -6,7 +6,9 @@ import OrderDetail from "./components/Orders/users/OrderDetail.vue";
 import ShoppingCart from "./components/Cart/ShoppingCart.vue";
 import ThanksForOrdering from "./components/ThanksForOrdering.vue"
 
-import ProductOverview from './components/Products/ProductOverview.vue';
+// import ProductOverview from './components/Products/ProductOverview.vue';
+import MyAccountsOverview from './components/bankaccounts/MyAccountsOverview.vue';
+
 import ProductList from './components/Products/admin/ProductList.vue';
 import ProductCreate from './components/Products/admin/ProductCreate.vue';
 import ProductEdit from './components/Products/admin/ProductEdit.vue';
@@ -21,7 +23,7 @@ const routes = [
   {
     path: "/",
     name: "/",
-    component: ProductOverview,
+    component: MyAccountsOverview,
   },
   {
     path: "/login",

@@ -6,12 +6,12 @@
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class="form-group">
           <label for="email">Email</label>
-          <Field name="email" type="email" class="form-control" />
+          <Field name="email" type="email" value="ruben@student.inholland.nl" class="form-control" />
           <ErrorMessage name="email" class="error-feedback text-danger" />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <Field name="password" type="password" class="form-control" />
+          <Field name="password" type="password" value="Secret123!" class="form-control" />
           <ErrorMessage name="password" class="error-feedback text-danger" />
         </div>
         <div class="form-group">
