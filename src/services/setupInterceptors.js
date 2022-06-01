@@ -1,5 +1,6 @@
 import axiosInstance from "./api";
 import TokenService from "./token.service";
+import axios from 'axios';
 const setup = (store) => {
   axiosInstance.interceptors.request.use(
     (config) => {
@@ -24,9 +25,12 @@ const setup = (store) => {
         if (err.response.status === 401 && !originalConfig._retry) {
           originalConfig._retry = true;
           try {
-            const rs = await axiosInstance.post("users/refreshtoken", {
-              refresh_token: TokenService.getLocalRefreshToken(),
+            console.log(TokenService.getLocalRefreshToken());
+
+            const rs = await axios.post("http://localhost:8080/api/users/refreshtoken", {
+              refreshToken: TokenService.getLocalRefreshToken(),
             });
+            console.log("refresh data" + rs.data)
             const tokens = rs.data;
             store.dispatch('auth/refreshToken', tokens);
             TokenService.updateLocalAccessToken(tokens.accessToken);
