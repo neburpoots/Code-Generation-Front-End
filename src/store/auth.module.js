@@ -48,8 +48,8 @@ export const auth = {
       );
     },
 
-    refreshToken({ commit }, userObject) {
-      commit('refreshToken', userObject);
+    refreshToken({ commit }, tokens) {
+      commit('refreshToken', tokens);
     }
 
   },
@@ -78,10 +78,10 @@ export const auth = {
       state.status.loggedIn = false;
     },
 
-    refreshToken(state, user) {
+    refreshToken(state, tokens) {
       state.status.loggedIn = true;
-      state.userObject.access_token = user.access_token;
-      state.userObject.refresh_token = user.refresh_token;
+      state.userObject.access_token = tokens.access_token;
+      state.userObject.refresh_token = tokens.refresh_token;
     }
   }
 };

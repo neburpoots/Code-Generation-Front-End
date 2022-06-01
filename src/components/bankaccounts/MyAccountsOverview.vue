@@ -1,11 +1,11 @@
 <template>
   <div class="container mt-5">
     <h1 class="title">Your bank accounts</h1>
-    <!-- <div
+    <div
       v-if="message"
       class="alert"
       :class="successful ? 'alert-success' : 'alert-danger'"
-    > -->
+    >
       {{ message }}
     </div>
       <div class="products d-flex justify-content-between flex-wrap">
@@ -15,9 +15,11 @@
           :bankAccount="bankaccount"
         />
       </div>
+      </div>
 </template>
 
 <script>
+import bankaccountService from "../../services/bankaccount.service";
 import BankAccountCard from "./BankAccountCard.vue";
 
 export default {
@@ -25,6 +27,7 @@ export default {
   components: {
     BankAccountCard,
   },
+  
   data() {
     return {
       bankaccounts: [],
@@ -32,12 +35,21 @@ export default {
     };
   },
   mounted() {
-
-    if(this.$store.getters['bankAccount/getBankAccounts'].length === 0) {
-        this.$store.dispatch("bankAccount/getOwnBankAccounts");
-    }
-
-    this.bankaccounts = this.$store.getters["bankAccount/getBankAccounts"];
+  const currentUser = this.$store.state.auth.userObject;
+  bankaccountService.getBankAccountsForUser(currentUser.user_id).then(
+      (response) => {
+        console.log(response)
+        this.bankaccounts = response.data;
+      },
+      (error) => {
+        this.bankaccounts =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+      }
+    );
   },
 };
 </script>
