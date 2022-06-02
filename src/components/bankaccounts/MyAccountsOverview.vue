@@ -39,7 +39,7 @@ export default {
   bankaccountService.getBankAccountsForUser(currentUser.user_id).then(
       (response) => {
         console.log(response)
-        this.bankaccounts = response.data;
+        this.bankaccounts = response.data.content;
       },
       (error) => {
         this.bankaccounts =

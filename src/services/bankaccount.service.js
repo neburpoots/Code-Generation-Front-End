@@ -2,8 +2,8 @@ import api from './api';
 
 class BankAccountService {
 
-    getAllBankAccounts() {
-        return api.get('accounts')
+    getAllBankAccounts(page) {
+        return api.get(`accounts?page=${page}`)
     }
 
     getBankAccountsForUser(id) {

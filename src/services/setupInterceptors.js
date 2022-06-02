@@ -25,8 +25,7 @@ const setup = (store) => {
         if (err.response.status === 401 && !originalConfig._retry) {
           originalConfig._retry = true;
           try {
-            console.log(TokenService.getLocalRefreshToken());
-
+            
             const rs = await axios.post("http://localhost:8080/api/users/refreshtoken", {
               refreshToken: TokenService.getLocalRefreshToken(),
             });
