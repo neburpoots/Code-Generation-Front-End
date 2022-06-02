@@ -9,9 +9,6 @@
             <Field name="name" type="text" class="form-control" />
             <ErrorMessage name="name" class="error-feedback text-danger" />
           </div>
-          <div class="previewimage">
-            <img class="previewimage" v-if="previewImage" :src=previewImage />
-          </div>
           <div class="form-group">
             <label for="price">Price</label>
             <Field name="price" type="number" class="form-control" />
