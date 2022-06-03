@@ -9,6 +9,7 @@
           <th scope="col">Lastname</th>
           <th scope="col">Email</th>
           <th scope="col">IBAN</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -16,7 +17,8 @@
           v-for="user in users"
           :key="user.user_id"
           :user="user"
-    />
+          @selected="userSelected"
+        />
       </tbody>
     </table>
   </div>
@@ -24,7 +26,7 @@
 
 <script>
 import UserItem from "./UserItem.vue";
-import userService from "../../../services/user.service";
+import UserService from "../../../services/user.service";
 
 export default {
   name: "UserList",
@@ -51,7 +53,7 @@ export default {
       this.getUsers();
     },
     getUsers() {
-      userService
+      UserService
         .getUsersWithParameters(
           this.pageNo,
           this.pageSize,
@@ -67,6 +69,10 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    userSelected(id) {
+      console.log(id);
+      this.$router.push("/usermanagement/" + id);
     },
   },
 };
