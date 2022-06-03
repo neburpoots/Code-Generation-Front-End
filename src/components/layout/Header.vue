@@ -7,7 +7,7 @@
           <router-link to="/bankaccountmanagement" class="nav-link">Bank account management</router-link>
         </li>
         <li v-if="currentUser && employeeAccess" class="nav-item">
-          <router-link to="/ordermanagement" class="nav-link">User management</router-link>
+          <router-link to="/usermanagement" class="nav-link">User management</router-link>
         </li>
       </div>
       <div class="navbar-nav ml-auto">

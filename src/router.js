@@ -15,6 +15,7 @@ import AccountCreate from './components/bankaccounts/Employee/AccountCreate.vue'
 import ProductList from './components/Products/admin/ProductList.vue';
 import ProductCreate from './components/Products/admin/ProductCreate.vue';
 import ProductEdit from './components/Products/admin/ProductEdit.vue';
+import UserList from './components/users/employee/UserList.vue'
 
 import OrderOverview from './components/Orders/admin/OrderOverview.vue';
 
@@ -32,6 +33,11 @@ const routes = [
     path: "/bankaccountmanagement",
     name: "/bankaccountmanagement",
     component: AllAccountsOverview,
+  },
+  {
+    path: "/usermanagement",
+    name: "/usermanagement",
+    component: UserList,
   },
   {
     path: "/accountcreate",
