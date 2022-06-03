@@ -125,6 +125,18 @@ export default {
         .required("Email is required")
         .nullable(false)
         .email("Not a valid email"),
+      daily_limit: yup
+        .number("Must be a number")
+        .min(0, "Can not be lower than 0")
+        .max(1000000, "Can not be higher than 1.000.000")
+        .required("Email is required")
+        .nullable(false),
+      transaction_limit: yup
+        .number("Must be a number")
+        .min(0, "Can not be lower than 0")
+        .max(1000000, "Can not be higher than 1.000.000")
+        .required("Email is required")
+        .nullable(false),
     });
     return {
       user: Object,
