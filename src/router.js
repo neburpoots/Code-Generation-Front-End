@@ -122,13 +122,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const publicPages = ['/login', '/register', '/', '/shoppingcart', '/noaccess'];
+    const publicPages = ['/login', '/register', '/noaccess'];
     const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('userObject');
-    const adminPages = ['/ordermanagement', '/productcreate', '/productmanagement',
-    '/productcreate', '/productedit/:id'];
+    const employeePages = ['/bankaccountmanagement', '/accountcreate', '/accountdetails',
+    '/accountdetails/:id', '/accountedit/:id'];
 
-    const adminRequired = adminPages.includes(to.path);
+    const adminRequired = employeePages.includes(to.path);
 
     // trying to access a restricted page + not logged in
     // redirect to login page
@@ -141,7 +141,7 @@ router.beforeEach((to, from, next) => {
         const userObject = JSON.parse(localStorage.getItem("userObject"));
 
         if(userObject) {
-          if(userObject.user.is_admin) {
+          if(userObject.role.filter(role => role.name === "ROLE_EMPLOYEE").length > 0) {
             next();
           } else {
             next('/noaccess')

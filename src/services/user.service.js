@@ -5,8 +5,14 @@ class UserService {
         return api.get('user')
     }
 
-    getUsersForCreateBankAccount(page, size) {
-        return api.get(`users?pageNo=${page}&pageSize=${size}`)
+    getUsersForCreateBankAccount(page, size, filterforNoBankAccount) {
+        let queryString = `users?pageNo=${page}&pageSize=${size}`;
+
+        if(filterforNoBankAccount) {
+            queryString += '&account=false'
+        }
+
+        return api.get(queryString);
     }
 
     getUsersWithParameters(pageNo, pageSize, firstname, lastname, iban, account) {

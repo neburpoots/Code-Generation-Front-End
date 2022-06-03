@@ -2,6 +2,10 @@
   <div class="container mt-5">
     <h1>Account create</h1>
     <div class="card card-container p-3">
+      <div class="form-group">
+      <input class="mr-2" type="checkbox" id="checkbox" v-model="searchForNoAccountUsers" @change="toggleSearch()" />
+      <label for="checkbox">Filter for users who have no bank account</label>
+      </div>
       <div>
         <table class="table table-dark">
           <thead>
@@ -36,14 +40,14 @@
             <p class="h4">Page: {{ page + 1 }}</p>
 
             <div class="prevbutton ml-auto">
-              <button @click="nextPage(page)" class="btn btn-primary next">
+              <button v-if="users.length > 0" @click="nextPage(page)" class="btn btn-primary next">
                 &#8594;
               </button>
             </div>
           </div>
         </div>
       </div>
-      <Form @submit="createProduct" :validation-schema="schema">
+      <Form @submit="createAccount" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
             <label for="name">Absolute limit</label>
@@ -95,11 +99,11 @@
 </template>
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
-import ProductService from "../../../services/product.service";
 
 import * as yup from "yup";
 import userService from "../../../services/user.service";
 import UserListItem from "./UserListItem.vue";
+import bankaccountService from "../../../services/bankaccount.service";
 export default {
   name: "AccountCreate",
   components: {
@@ -129,34 +133,48 @@ export default {
       schema,
       page: 0,
       size: 5,
+      searchForNoAccountUsers: false
     };
   },
   computed: {
 
   },
   methods: {
-    createProduct(product) {
+    createAccount() {
       this.message = "";
       this.successful = false;
       this.loading = true;
 
-      ProductService.postProduct(product).then(
-        (data) => {
-          this.message = data.message;
-          this.successful = true;
-          this.loading = false;
-        },
-        (error) => {
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          this.successful = false;
-          this.loading = false;
-        }
-      );
+      console.log(this.selected)
+
+      if(this.selectedUser.user_id) {
+        bankaccountService.createAccount(this.selectedUser.user_id, this.selected, this.absoluteLimit).then(
+          () => {
+            this.message = "Succesfully created account";
+            this.successful = true;
+            this.loading = false;
+          },
+          (error) => {
+            this.message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+            this.successful = false;
+            this.loading = false;
+          }
+        );
+      } else {
+        this.message = "Select a user";
+        this.successful = false;
+        this.loading = false;
+      }
+    },
+
+    toggleSearch() {
+      console.log(this.searchForNoAccountUsers);
+      this.getUsers();
     },
 
     nextPage() {
@@ -174,7 +192,7 @@ export default {
     },
 
     getUsers() {
-      userService.getUsersForCreateBankAccount(this.page, this.size).then(
+      userService.getUsersForCreateBankAccount(this.page, this.size, this.searchForNoAccountUsers).then(
         (response) => {
           this.users = response.data;
           console.log(this.users);

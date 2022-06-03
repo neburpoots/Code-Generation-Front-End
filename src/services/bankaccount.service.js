@@ -28,6 +28,21 @@ class BankAccountService {
             return Promise.reject(_error);
         }
     }
+
+    async createAccount(user_id, accountType, absoluteLimit) {
+
+        let data = {absolute_limit: absoluteLimit, account_type: accountType, user_id: user_id}
+
+        let jsonAccount = JSON.stringify(data);
+        
+        console.log(jsonAccount)
+
+        try {
+            return api.post("/accounts/", jsonAccount);
+        } catch (_error) {
+            return Promise.reject(_error);
+        }
+    }
 }
 
 export default new BankAccountService();
