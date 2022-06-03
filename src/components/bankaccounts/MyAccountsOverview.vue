@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-5">
     <h1 class="title">Your bank accounts</h1>
+    <h3><div>Total balance: €{{getTotalBalance}}</div></h3>
     <div
       v-if="message"
       class="alert"
@@ -51,5 +52,14 @@ export default {
       }
     );
   },
+  computed: {
+    getTotalBalance() {
+          let totalPrice = 0;
+          this.bankaccounts.forEach(item => {
+            totalPrice += item.balance
+          })
+          return totalPrice.toFixed(2);
+    }
+  }
 };
 </script>

@@ -10,6 +10,7 @@ import ThanksForOrdering from "./components/ThanksForOrdering.vue"
 import MyAccountsOverview from './components/bankaccounts/MyAccountsOverview.vue';
 import AllAccountsOverview from './components/bankaccounts/Employee/AllAccountsOverview.vue';
 import AccountDetail from './components/bankaccounts/Employee/AccountDetail.vue';
+import AccountEdit from './components/bankaccounts/Employee/AccountEdit.vue';
 import AccountCreate from './components/bankaccounts/Employee/AccountCreate.vue';
 import ProductList from './components/Products/admin/ProductList.vue';
 import ProductCreate from './components/Products/admin/ProductCreate.vue';
@@ -40,6 +41,11 @@ const routes = [
   { 
     path: '/accountdetails/:id', 
     component: AccountDetail, 
+    props: true  
+  },
+  { 
+    path: '/accountedit/:id', 
+    component: AccountEdit, 
     props: true  
   },
   {

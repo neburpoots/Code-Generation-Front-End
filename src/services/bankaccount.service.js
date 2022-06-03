@@ -13,6 +13,21 @@ class BankAccountService {
     getSingleBankAccount(id) {
         return api.get(`accounts/${id}`)
     }
+
+    async editAccount(account, id) {
+
+        let data = {absolute_limit: account.absoluteLimit, status: account.status}
+
+        let jsonAccount = JSON.stringify(data);
+        
+        console.log(jsonAccount)
+
+        try {
+            return api.patch("/accounts/" + id, jsonAccount);
+        } catch (_error) {
+            return Promise.reject(_error);
+        }
+    }
 }
 
 export default new BankAccountService();

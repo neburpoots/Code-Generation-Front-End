@@ -15,7 +15,7 @@
       <th scope="col">Name</th>
       <th scope="col">Balance</th>
       <th scope="col">Status</th>
-      <th scope="col">Absolute limit</th>
+      <th scope="col">Account type</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
