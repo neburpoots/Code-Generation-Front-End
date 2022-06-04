@@ -8,8 +8,8 @@
         <h3 class="orderdate">Status: {{account.status ? 'Open' : 'Frozen'}}</h3>
         <h4 class="pt-5 orderdate">Name of the owner: {{user.firstname + " " + user.lastname}}</h4>
         <h4 class="orderdate">Email: {{user.email}}</h4>
-        <h4 class="orderdate">Daily limit of user: {{user.daily_limit}}</h4>
-        <h4 class="orderdate">Daily limit of transactions: {{user.transaction_limit}}</h4>
+        <h4 class="orderdate">Daily limit of total transactions: {{user.daily_limit}}</h4>
+        <h4 class="orderdate">Limit of a single transaction: {{user.transaction_limit}}</h4>
     </div>
   </section>
 </template>
