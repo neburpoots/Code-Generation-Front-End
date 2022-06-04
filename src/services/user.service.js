@@ -19,6 +19,10 @@ class UserService {
         return api.get(`users?pageNo=${pageNo}&pageSize=${pageSize}&firstname=${firstname}&lastname=${lastname}&iban=${iban}&account=${account}`)
     }
 
+    getUsersByIban(pageNo, pageSize, iban) {
+        return api.get(`users?pageNo=${pageNo}&pageSize=${pageSize}&iban=${iban}`)
+    }
+
     getUser(id) {
         return api.get(`users/${id}`)
     }
