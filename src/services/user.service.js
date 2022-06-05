@@ -50,6 +50,16 @@ class UserService {
 
         return api.patch("/users/password", json);
     }
+    async registerUser(user) {
+
+        let data = {firstname: user.firstname, lastname: user.lastname, email: user.email, password: user.password}
+
+        let json = JSON.stringify(data);
+        
+        console.log(json)
+
+        return api.post("/users/register", json);
+    }
 }
 
 export default new UserService();

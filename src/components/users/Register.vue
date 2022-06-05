@@ -67,6 +67,7 @@
 <script>
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
+import UserService from "../../services/user.service";
 
 export default {
   name: "Register",
@@ -127,6 +128,23 @@ export default {
   methods: {
     registerUser(user) {
       console.log(user);
+      UserService.registerUser(user).then(
+        () => {
+          this.successful = true;
+          this.loading = false;
+          this.message = "User registered";
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+          this.loading = false;
+        }
+      );
     },
   },
 };
