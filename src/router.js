@@ -18,6 +18,9 @@ import ProductEdit from "./components/Products/admin/ProductEdit.vue";
 import UserList from "./components/users/employee/UserList.vue";
 import UserEdit from "./components/users/employee/UserEdit.vue";
 import ChangePassword from "./components/users/ChangePassword.vue";
+import PrimaryTransactions from "./components/Transactions/PrimaryTransactions.vue";
+import SavingTransactions from "./components/Transactions/SavingTransactions.vue";
+import TransactionAdmin from "./components/Transactions/TransactionAdmin.vue"
 
 import OrderOverview from "./components/Orders/admin/OrderOverview.vue";
 
@@ -90,6 +93,23 @@ const routes = [
     path: "/orderdetail/:id",
     component: OrderDetail,
     props: true,
+  },
+  {
+    path: "/primary-transactions",
+    name: "Primary Transactions",
+    component: PrimaryTransactions,
+
+  },
+  {
+    path: "/saving-transactions",
+    name: "Saving Transactions",
+    component: SavingTransactions,
+  },
+  {
+path: "/transaction-admin",
+name: "TransactionAdmin",
+component: TransactionAdmin
+
   },
   {
     path: "/shoppingcart",

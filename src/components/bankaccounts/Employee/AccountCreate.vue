@@ -19,7 +19,7 @@
           <tbody>
             <User-List-Item
               v-on:selectUser="selectUser"
-              v-for="user in users"
+              v-for="user in users.content"
               :key="user.user_id"
               :user="user"
               :selected="isSelected(user.user_id)"
@@ -27,24 +27,16 @@
           </tbody>
         </table>
         <div class="d-flex justify-content-center">
-          <div class="w-25 pagination">
+        <div class="w-25 pagination">
             <div class="prevbutton mr-auto">
-              <button
-                v-if="page !== 0"
-                @click="prevPage(page)"
-                class="btn btn-primary previous"
-              >
-                &#x2190;
-              </button>
+                <button v-if="pageable.pageNumber !== 0" @click="prevPage()" class="btn btn-primary previous">&#x2190;</button>
             </div>
-            <p class="h4">Page: {{ page + 1 }}</p>
-
+                <p class="h4">Page: {{pageable.pageNumber + 1}}</p>
+            
             <div class="prevbutton ml-auto">
-              <button v-if="users.length > 0" @click="nextPage(page)" class="btn btn-primary next">
-                &#8594;
-              </button>
+                <button v-if="pageable.pageNumber + 1 !== users.totalPages" @click="nextPage()"  class="btn btn-primary next">&#8594;</button>
             </div>
-          </div>
+        </div>
         </div>
       </div>
       <Form @submit="createAccount" :validation-schema="schema">
@@ -132,6 +124,7 @@ export default {
       message: "",
       schema,
       page: 0,
+      pageable: Object,
       size: 5,
       searchForNoAccountUsers: false
     };
@@ -188,13 +181,14 @@ export default {
     },
 
     selectUser(id) {
-      this.selectedUser = this.users.find(item => item.user_id === id)
+      this.selectedUser = this.users.content.find(item => item.user_id === id)
     },
 
     getUsers() {
       userService.getUsersForCreateBankAccount(this.page, this.size, this.searchForNoAccountUsers).then(
         (response) => {
           this.users = response.data;
+          this.pageable = response.data.pageable;
           console.log(this.users);
         },
         (error) => {

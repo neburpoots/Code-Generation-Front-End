@@ -11,7 +11,7 @@ class UserService {
         if(filterforNoBankAccount) {
             queryString += '&account=false'
         }
-
+        
         return api.get(queryString);
     }
 
