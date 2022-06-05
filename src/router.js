@@ -17,6 +17,7 @@ import ProductCreate from "./components/Products/admin/ProductCreate.vue";
 import ProductEdit from "./components/Products/admin/ProductEdit.vue";
 import UserList from "./components/users/employee/UserList.vue";
 import UserEdit from "./components/users/employee/UserEdit.vue";
+import ChangePassword from "./components/users/ChangePassword.vue";
 
 import OrderOverview from "./components/Orders/admin/OrderOverview.vue";
 
@@ -67,6 +68,11 @@ const routes = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/changepassword",
+    name: "/changepassword",
+    component: ChangePassword,
   },
   {
     path: "/profile",

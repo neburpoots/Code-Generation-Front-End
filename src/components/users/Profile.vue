@@ -27,11 +27,12 @@
         <li v-for="role in currentUser.role" :key="role">{{role.role_id + ": " + role.name}}</li>
       </ul>    
     </p>
+    <a href="/changepassword" class="btn mb-5 btn-warning">Change password</a>
   </div>
 </template>
 <script>
 export default {
-  name: 'Profile',
+  name: "Profile",
   computed: {
     currentUser() {
       return this.$store.state.auth.userObject;
@@ -39,8 +40,8 @@ export default {
   },
   mounted() {
     if (!this.currentUser) {
-      this.$router.push('/login');
+      this.$router.push("/login");
     }
-  }
+  },
 };
 </script>

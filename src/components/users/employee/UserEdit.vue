@@ -160,12 +160,16 @@ export default {
       UserService.getUser(this.id)
         .then((response) => {
           this.user = response.data;
-          console.log(response.data);
           this.setRoles(this.user.role);
           this.checkOwn();
         })
         .catch((error) => {
-          console.log(error);
+          this.accounts =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
         });
     },
     setRoles(roles) {
@@ -187,7 +191,6 @@ export default {
       this.message = "";
       this.successful = false;
       this.loading = true;
-      console.log(this.user);
       let roles = [];
       if (this.customer) {
         roles.push(1);

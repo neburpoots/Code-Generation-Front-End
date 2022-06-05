@@ -142,8 +142,6 @@ export default {
           this.totalPages = response.data.totalPages;
           this.first = response.data.first;
           this.last = response.data.last;
-          // console.log(this.users);
-          // console.log(response.data.pageable);
         })
         .catch((error) => {
           this.accounts =
@@ -155,7 +153,6 @@ export default {
         });
     },
     userSelected(id) {
-      console.log(id);
       this.$router.push("/usermanagement/" + id);
     },
     nextPage() {
@@ -177,11 +174,8 @@ export default {
           this.first = response.data.first;
           this.last = response.data.last;
           this.searched = true;
-          // console.log(this.users);
-          // console.log(response.data.pageable);
         })
         .catch((error) => {
-          console.log(error);
           this.accounts =
             (error.response &&
               error.response.data &&

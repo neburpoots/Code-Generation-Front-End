@@ -30,15 +30,25 @@ class UserService {
 
         let data = {firstname: user.firstname, lastname: user.lastname, email: user.email, transaction_limit: user.transaction_limit, daily_limit: user.daily_limit, roles}
 
-        let jsonAccount = JSON.stringify(data);
+        let json = JSON.stringify(data);
         
-        console.log(jsonAccount)
+        console.log(json)
 
         try {
-            return api.patch("/users/" + id, jsonAccount);
+            return api.patch("/users/" + id, json);
         } catch (_error) {
             return Promise.reject(_error);
         }
+    }
+    async changePassword(currentPassword, newPassword) {
+
+        let data = {currentPassword: currentPassword, newPassword: newPassword}
+
+        let json = JSON.stringify(data);
+        
+        console.log(json)
+
+        return api.patch("/users/password", json);
     }
 }
 
