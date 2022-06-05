@@ -5,7 +5,7 @@
       <h2 class="card-title">{{bankAccount.accountType === "PRIMARY" ? "Primary Account" : "Savings Account"}}</h2>
       <h5 class="pt-2 card-text">{{ bankAccount.account_id }}</h5>
       <h3 class="pt-2 card-title">Balance: €{{ bankAccount.balance }}</h3>
-      <button href="#" @click="goToTransactionOverview(bankAccount)" class="mt-5 btn btn-primary">View transactions</button>
+      <button href="#" @click="goToTransactionOverview(bankAccount.accountType)" class="mt-5 btn btn-primary">View transactions</button>
     </div>
   </div>
 </div>
@@ -19,8 +19,11 @@ export default {
     bankAccount: Object,
   },
   methods: {
-    goToTransactionOverview() {
-
+    goToTransactionOverview(e) {
+      if(e === "PRIMARY")
+        this.$router.push("primary-transactions")
+      else 
+        this.$router.push("saving-transactions")
     }
   }
 };
