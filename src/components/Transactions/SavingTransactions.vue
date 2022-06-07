@@ -16,10 +16,9 @@
     </div>
     <h2 v-else>You have no primary account.</h2>
 
-    <h1 @click="openForm">Make transaction</h1>
+    <h1>Make transaction</h1>
 
     <form
-      v-if="this.transactionShow"
       class="mx-5"
       @submit.prevent="createTransaction"
     >
@@ -49,7 +48,6 @@ export default {
       pageSize: 5,
       accountExists: false,
       removeToAccount: true,
-      transactionShow: false,
       newTransaction: {
         fromAccount: "",
         toAccount: "",
@@ -59,10 +57,6 @@ export default {
     };
   },
   methods: {
-    openForm() {
-      if (this.transactionShow == true) this.transactionShow = false;
-      else this.transactionShow = true;
-    },
     createTransaction() {
       if (
         isNaN(this.newTransaction.amount) ||

@@ -16,10 +16,9 @@
     </div>
     <h2 v-else>You have no primary account.</h2>
 
-    <h1 @click="openForm">Make transaction</h1>
+    <h1>Make transaction</h1>
 
     <form
-      v-if="this.transactionShow"
       class="mx-5"
       @submit.prevent="createTransaction"
     >
@@ -69,17 +68,19 @@
 
 <script>
 import TransactionService from "./../../services/transaction.service";
+import tokenService from "./../../services/token.service";
+
 export default {
   name: "PrimaryTransactions",
   data() {
     return {
+      firstname: "",
       primaryAccountIban: "",
       transactions: [],
       pageSize: 5,
       addressBook: [],
       accountExists: false,
       removeToAccount: true,
-      transactionShow: false,
       newTransaction: {
         toAccount: "",
         amount: "",
@@ -98,10 +99,6 @@ export default {
         this.newTransaction.toAccount = this.primaryAccountIban;
       }
       console.log("Changed: " + event.target.value);
-    },
-    openForm() {
-      if (this.transactionShow == true) this.transactionShow = false;
-      else this.transactionShow = true;
     },
     createTransaction() {
       if (
@@ -146,12 +143,18 @@ export default {
       });
 
       TransactionService.getIbanAddresses().then((res) => {
+        var username = tokenService.getUser().firstname;
         for (let i = 0; i < res.data.content.length; i++) {
+
+          if(res.data.content[i].accountType == "PRIMARY" || res.data.content[i].user.firstname == username){
           this.addressBook.push({
-            name: res.data.content[i].user.firstname,
+            name: res.data.content[i].user.firstname + " - (" + res.data.content[i].accountType + ")",
             iban: res.data.content[i].account_id,
           });
-          console.log(res.data.content[i].user.firstname);
+          }
+          console.log(res.data.content[i]);
+
+
         }
       });
     });
