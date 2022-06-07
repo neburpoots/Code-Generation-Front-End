@@ -26,7 +26,7 @@ const setup = (store) => {
           originalConfig._retry = true;
           try {
             
-            const rs = await axios.post("http://localhost:8080/api/users/refreshtoken", {
+            const rs = await axios.post("https://swaggerbankinholland.herokuapp.com/", {
               refreshToken: TokenService.getLocalRefreshToken(),
             });
             console.log(rs.data)
