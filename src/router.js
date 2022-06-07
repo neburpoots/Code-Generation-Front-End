@@ -1,10 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Login from "./components/users/Login.vue";
 import Register from "./components/users/Register.vue";
-import MyOrders from "./components/Orders/users/MyOrders.vue";
-import OrderDetail from "./components/Orders/users/OrderDetail.vue";
-import ShoppingCart from "./components/Cart/ShoppingCart.vue";
-import ThanksForOrdering from "./components/ThanksForOrdering.vue";
 
 // import ProductOverview from './components/Products/ProductOverview.vue';
 import MyAccountsOverview from "./components/bankaccounts/MyAccountsOverview.vue";
@@ -12,17 +8,12 @@ import AllAccountsOverview from "./components/bankaccounts/Employee/AllAccountsO
 import AccountDetail from "./components/bankaccounts/Employee/AccountDetail.vue";
 import AccountEdit from "./components/bankaccounts/Employee/AccountEdit.vue";
 import AccountCreate from "./components/bankaccounts/Employee/AccountCreate.vue";
-import ProductList from "./components/Products/admin/ProductList.vue";
-import ProductCreate from "./components/Products/admin/ProductCreate.vue";
-import ProductEdit from "./components/Products/admin/ProductEdit.vue";
 import UserList from "./components/users/employee/UserList.vue";
 import UserEdit from "./components/users/employee/UserEdit.vue";
 import ChangePassword from "./components/users/ChangePassword.vue";
 import PrimaryTransactions from "./components/Transactions/PrimaryTransactions.vue";
 import SavingTransactions from "./components/Transactions/SavingTransactions.vue";
 import TransactionAdmin from "./components/Transactions/TransactionAdmin.vue"
-
-import OrderOverview from "./components/Orders/admin/OrderOverview.vue";
 
 import NoAccess from "./components/NoAccess.vue";
 
@@ -84,17 +75,6 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/myorders",
-    name: "myorders",
-    // lazy-loaded
-    component: MyOrders,
-  },
-  {
-    path: "/orderdetail/:id",
-    component: OrderDetail,
-    props: true,
-  },
-  {
     path: "/primary-transactions",
     name: "Primary Transactions",
     component: PrimaryTransactions,
@@ -106,47 +86,15 @@ const routes = [
     component: SavingTransactions,
   },
   {
-path: "/transaction-admin",
-name: "TransactionAdmin",
-component: TransactionAdmin
-
-  },
-  {
-    path: "/shoppingcart",
-    component: ShoppingCart,
-  },
-  {
-    path: "/thanksforordering",
-    name: "ThanksForOrdering",
-    component: ThanksForOrdering,
-    props: true,
-  },
-  {
-    path: "/ordermanagement",
-    name: "OrderOverview",
-    component: OrderOverview,
-  },
-  {
-    path: "/productmanagement",
-    name: "ProductList",
-    component: ProductList,
-    props: true,
-  },
-  {
-    path: "/productcreate",
-    name: "ProductCreate",
-    component: ProductCreate,
+    path: "/transaction-admin",
+    name: "TransactionAdmin",
+    component: TransactionAdmin
   },
   {
     path: "/noaccess",
     name: "NoAccess",
     component: NoAccess,
-  },
-  {
-    path: "/productedit/:id",
-    component: ProductEdit,
-    props: true,
-  },
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),

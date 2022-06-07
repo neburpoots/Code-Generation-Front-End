@@ -13,11 +13,6 @@
           <router-link to="/usermanagement" class="nav-link">User management</router-link>
         </li>
       </div>
-      <div class="navbar-nav ml-auto">
-          <router-link to="/shoppingcart" class="nav-link">
-            <font-awesome-icon icon="basket-shopping" /> Shopping cart
-          </router-link>
-      </div>
       <div v-if="!currentUser" class="navbar-nav">
         <li class="nav-item">
           <router-link to="/register" class="nav-link">
