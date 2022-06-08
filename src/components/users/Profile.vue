@@ -27,7 +27,9 @@
         <li v-for="role in currentUser.role" :key="role">{{role.role_id + ": " + role.name}}</li>
       </ul>    
     </p>
-    <a href="/changepassword" class="btn mb-5 btn-warning">Change password</a>
+    <button class="btn mb-5 btn-warning" @click="this.$router.push('/changepassword');">
+      Change password
+    </button>
   </div>
 </template>
 <script>

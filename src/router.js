@@ -94,7 +94,12 @@ const routes = [
     path: "/noaccess",
     name: "NoAccess",
     component: NoAccess,
-  }
+  },
+  {
+    path: "/*",
+    component: NoAccess
+  },
+  
 ];
 const router = createRouter({
   history: createWebHistory(),

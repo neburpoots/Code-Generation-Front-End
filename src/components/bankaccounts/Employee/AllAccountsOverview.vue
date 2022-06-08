@@ -1,9 +1,9 @@
 <template>
 <div class="container pt-5">
 <h1 class="title pb-5">Bank account management</h1>
-<a href="/accountcreate" class="create">
-  <button class="btn mb-5 btn-primary">Create account</button>
-</a>
+<button class="btn mb-5 btn-primary" @click="this.$router.push('/accountcreate');">
+  Create Account
+</button>
 <div v-if="message" class="alert" :class="successful ? 'alert-success' : 'alert-danger'">
   {{ message }}
 </div>
