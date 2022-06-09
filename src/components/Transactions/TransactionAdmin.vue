@@ -97,7 +97,7 @@ export default {
     TransactionService.getIbanAddresses().then((res) => {
       for (let i = 0; i < res.data.content.length; i++) {
         this.addressBook.push({
-          name: res.data.content[i].user.firstname,
+          name: res.data.content[i].user.firstname + " - " + res.data.content[i].accountType,
           iban: res.data.content[i].account_id,
         });
         console.log(res.data.content[i].user.firstname);
