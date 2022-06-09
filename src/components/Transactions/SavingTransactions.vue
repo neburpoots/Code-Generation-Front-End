@@ -8,7 +8,7 @@
     <div v-if="this.accountExists">
       <div v-for="t in this.transactions" :key="t.transaction_id">
         <p>
-          <strong>$ {{ t.amount }}</strong> - {{ t.date }} -
+          <strong>€ {{ t.amount }}</strong> - {{ t.date }} -
           {{ t.transaction_type }}
         </p>
       </div>
